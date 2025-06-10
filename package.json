@@ -41,8 +41,9 @@
 	"dependencies": {
 		"@mdi/font": "^7.2.96",
 		"@pinia/nuxt": "^0.5.1",
+		"pinia": "^3.0.3",
 		"sass": "^1.68.0",
-		"vuetify": "^3.3.23"
+		"vuetify": "^3.8.8"
 	},
 	"version": "3.0.0"
 }
