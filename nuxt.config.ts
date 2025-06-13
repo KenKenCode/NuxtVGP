@@ -2,17 +2,18 @@
 import vuetify from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
+  rootDir: 'app',
   css: [
-    'vuetify/styles',              // Vuetify's built-in styles
-    '@/assets/styles/main.scss'    // Your custom SCSS file
+    'vuetify/styles',              
+    '@/assets/styles/main.scss'    
   ],
 
   build: {
-    transpile: ['vuetify'],         // Needed to transpile Vuetify components
+    transpile: ['vuetify'],         
   },
 
   imports: {
-    dirs: ['./stores'],             // Auto-import Pinia stores
+    dirs: ['./stores'],             
   },
 
   apollo: {
