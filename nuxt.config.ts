@@ -1,26 +1,44 @@
+// nuxt.config.ts
 import vuetify from 'vite-plugin-vuetify'
-// https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-	future: { compatibilityVersion: 4 },
-	build: { transpile: ['vuetify'] },
-	imports: { dirs: ['./stores'] },
+  css: [
+    'vuetify/styles',              // Vuetify's built-in styles
+    '@/assets/styles/main.scss'    // Your custom SCSS file
+  ],
 
-	apollo: {
-		autoImports: true,
-		proxyCookies: true,
-		clients: {
-			default: { httpEndpoint: 'https://spacex-production.up.railway.app/' },
-		},
-	},
+  build: {
+    transpile: ['vuetify'],         // Needed to transpile Vuetify components
+  },
 
-	vite: {
-		optimizeDeps: {
-			include: ['graphql-tag'],
-		},
-		plugins: [vuetify()],
-	},
+  imports: {
+    dirs: ['./stores'],             // Auto-import Pinia stores
+  },
 
-	modules: ['@nuxtjs/apollo', ['@pinia/nuxt', { autoImports: ['defineStore', 'acceptHMRUpdate'], devtools: true }]],
-	compatibilityDate: '2024-11-11',
+  apollo: {
+    autoImports: true,
+    proxyCookies: true,
+    clients: {
+      default: {
+        httpEndpoint: 'https://spacex-production.up.railway.app/',
+      },
+    },
+  },
+
+  vite: {
+    optimizeDeps: {
+      include: ['graphql-tag'],     // Helps avoid dependency issues
+    },
+    plugins: [vuetify({ autoImport: true })], // Vuetify plugin
+  },
+
+  modules: [
+    '@nuxtjs/apollo',
+    ['@pinia/nuxt', {
+      autoImports: ['defineStore', 'acceptHMRUpdate'],
+      devtools: true,
+    }],
+  ],
+
+  compatibilityDate: '2024-11-11',
 })

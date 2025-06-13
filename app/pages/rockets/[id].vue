@@ -11,6 +11,11 @@
       <p><strong>Diameter:</strong> {{ rocket.diameter.meters }} meters</p>
       <p><strong>Mass:</strong> {{ rocket.mass.kg }} kg</p>
       <p><strong>Stages:</strong> {{ rocket.stages }}</p>
+
+      <!-- Add to Favorites button -->
+      <v-btn @click="toggleFavorite" color="primary">
+  {{ isFavorite(rocket?.id) ? 'Remove from Favorites' : 'Add to Favorites' }}
+</v-btn>
     </div>
   </div>
 </template>
@@ -18,15 +23,27 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { useFavoritesStore } from '~/stores/favorites'
 
 const route = useRoute()
 const rocket = ref(null)
 const loading = ref(true)
 const error = ref(null)
 
+const { addFavorite, isFavorite, removeFavorite } = useFavoritesStore()
+
+const toggleFavorite = () => {
+  if (isFavorite(rocket.value.id)) {
+    removeFavorite(rocket.value.id)
+  } else {
+    addFavorite(rocket.value)
+  }
+}
+
 const query = `
   query ($id: ID!) {
     rocket(id: $id) {
+      id
       name
       description
       first_flight
@@ -48,7 +65,6 @@ onMounted(async () => {
         variables: { id: route.params.id }
       }
     })
-
     rocket.value = res.data.rocket
   } catch (err) {
     error.value = err
