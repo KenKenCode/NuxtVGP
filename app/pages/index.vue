@@ -17,6 +17,7 @@
         <label class="block mb-1 font-semibold">Filter by year:</label>
         <select v-model="year" class="border p-2 rounded">
           <option value="all">All</option>
+          <option value"not">Not All</option>
           <option v-for="y in availableYears" :key="y" :value="y.toString()">{{ y }}</option>
         </select>
       </div>
