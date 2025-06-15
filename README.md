@@ -28,7 +28,7 @@ This project is a modern frontend boilerplate built using **Nuxt 3**, **Vuetify*
 Make sure to install the dependencies:
 
 ```bash
-pnpm install
+npm install -g pnpm
 
 ```
 
