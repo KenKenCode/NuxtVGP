@@ -1,10 +1,8 @@
 import vuetify from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
-  rootDir: 'app', 
   css: [
     'vuetify/styles',
-    '@/assets/styles/main.scss',
   ],
 
   nitro: {
