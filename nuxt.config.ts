@@ -1,19 +1,24 @@
 import vuetify from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
-  rootDir: 'app',
-
+  rootDir: 'app', 
   css: [
     'vuetify/styles',
     '@/assets/styles/main.scss',
   ],
+
+  nitro: {
+    externals: {
+      external: ['graphql']
+    }
+  },
 
   build: {
     transpile: ['vuetify'],
   },
 
   imports: {
-    dirs: ['./stores'],
+    dirs: ['~/stores'], // ⛳ more reliable path resolution than relative './stores'
   },
 
   apollo: {
@@ -31,18 +36,20 @@ export default defineNuxtConfig({
       include: ['graphql-tag'],
     },
     plugins: [
-      vuetify({ autoImport: true }) // ✅ Vite Vuetify plugin
+      vuetify({ autoImport: true }),
     ],
   },
 
   modules: [
     '@nuxtjs/apollo',
+    '@nuxtjs/tailwindcss',
     ['@pinia/nuxt', {
       autoImports: ['defineStore', 'acceptHMRUpdate'],
       devtools: true,
     }],
-    '@nuxtjs/tailwindcss'
   ],
 
-  compatibilityDate: '2024-11-11',
+  compatibility: {
+    date: '2024-11-11', // ✅ Updated for Nuxt 3.17+ syntax
+  },
 })
