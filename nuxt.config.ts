@@ -1,7 +1,7 @@
 import vuetify from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
-  rootDir: 'output',
+  rootDir: 'app',
 
   css: [
     'vuetify/styles',
