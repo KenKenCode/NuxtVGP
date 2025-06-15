@@ -1,4 +1,3 @@
-// stores/favorites.ts
 export const useFavoritesStore = defineStore('favorites', {
   state: () => ({
     favorites: [] as Array<any>,
